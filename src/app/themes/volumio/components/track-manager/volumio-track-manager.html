@@ -40,7 +40,8 @@
           {{trackManager.playerService.songLength}}
         </div>
         <div class="footerText">
-          <span ng-if="trackManager.playerService.state.trackType !== 'webradio'">
+          <span ng-if="trackManager.playerService.state.trackType !== 'webradio'
+          && trackManager.playerService.state.trackType !== 'airplay'">
             <img
                 ng-if="trackManager.playerService.state.fileFormat"
                 ng-src="{{'/app/themes/volumio/assets/format-icons/' +
@@ -53,8 +54,9 @@
         </div>
       </div>
       <div ng-if="trackManager.playerService.state.trackType === 'webradio'" class="fakePulsingKnob"></div>
+      <div ng-if="trackManager.playerService.state.trackType === 'airplay'" class="fakePulsingKnobAirPlay"></div>
       <knob
-        ng-if="trackManager.playerService.state.trackType !== 'webradio'"
+        ng-if="trackManager.playerService.state.trackType !== 'webradio' && trackManager.playerService.state.trackType !== 'airplay'"
         value="trackManager.playerService.seekPercent"
         on-change="trackManager.onChange(value)"
         options="trackManager.knobOptions"
